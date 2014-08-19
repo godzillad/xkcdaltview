@@ -1,0 +1,14 @@
+{
+  "name": "xkcd_viewer",
+  "description": "View xkcd with alt text",
+  "author": "Godzilla82",
+  "dependencies": {
+    "express": "4.x.x",
+    "htmlparser2": "3.7.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jane-doe/node-example.git"
+  },
+  "engine": "node >= 0.10.x"
+}
