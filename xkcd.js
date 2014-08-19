@@ -8,7 +8,7 @@ var port = Number(process.env.PORT || 8090);
 
 var app = express('xkcd');
 
-app.get('/data', onQuery);
+app.get('/xkcd', onQuery);
 
 var server = app.listen(port ,ip_addr, function(){
 	console.log('Listening at :' + server.address().port);
@@ -62,13 +62,14 @@ function onQuery(req, res , next){
 						text = text.replace(/[\r\n\t]/g,"");
 						text = text.trim();
 						title = text;
+						foundTitle=false;
 					}
 				},
 				onclosetag: function(tagname){
 					if (gotData){
-						var resTxt = "<html><body>" + title ;
-						resTxt += "<img src='" + source + "'>";
-						resTxt += alt;
+						var resTxt = "<html><body><h3>" + title +"</h3><br>";
+						resTxt += "<img src='" + source + "'><br>";
+						resTxt += "<div style='font-size:5px'>" + alt + "</font>";
 						resTxt += "</body><html>";
 						res.set('Content-Type', 'text/html');
 						
@@ -86,5 +87,3 @@ function onQuery(req, res , next){
 	});
 
 }
-
-
