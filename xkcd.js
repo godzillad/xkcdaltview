@@ -16,10 +16,16 @@ var server = app.listen(port ,ip_addr, function(){
 
 function onQuery(req, res , next){
 
+	var isRandom = req.param('random');
+	var _path = "";
+	if(isRandom == "1"){
+		_path = Math.floor(Math.random() * 1409 );
+		_path = "" + _path + "/";
+	}
 	var options = {
 		host: 'xkcd.com',
 		port: 80,
-		path: '',
+		path: _path,
 		method: 'GET'
 	};
 	http.get(options, function(resp) {
@@ -40,7 +46,7 @@ function onQuery(req, res , next){
 
 		resp.on('end', function () {
 
-			
+			console.log(response);
 			var parser = new htmlparser.Parser({
 				onopentag: function(tagname, attribs){
 					if(tagname === "div" && attribs.id === 'ctitle'){
