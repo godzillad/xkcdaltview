@@ -4,13 +4,14 @@ var http = require('http');
 var htmlparser = require("htmlparser2");
 
 var ip_addr = '0.0.0.0';
-var port    =  '8090';
+var port = Number(process.env.PORT || 8090);
 
 var app = express('xkcd');
 
 app.get('/data', onQuery);
 
 var server = app.listen(port ,ip_addr, function(){
+	console.log('Listening at :' + server.address().port);
 });
 
 function onQuery(req, res , next){
