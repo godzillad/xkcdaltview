@@ -67,7 +67,7 @@ function onQuery(req, res , next){
 				},
 				onclosetag: function(tagname){
 					if (gotData){
-						var resTxt = "<html><body><h3>" + title +"</h3><br>";
+						var resTxt = "<html><body><center style='font-size:30px;font-family:Arial'>" + title +"</center><br>";
 						resTxt += "<img src='" + source + "'><br>";
 						resTxt += "<div style='font-size:5px'>" + alt + "</font>";
 						resTxt += "</body><html>";
