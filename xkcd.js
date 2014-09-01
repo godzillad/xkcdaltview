@@ -2,6 +2,8 @@
 var express = require('express');
 var http = require('http');
 var htmlparser = require("htmlparser2");
+var fs = require('fs');
+ 
 
 var ip_addr = '0.0.0.0';
 var port = Number(process.env.PORT || 8090);
