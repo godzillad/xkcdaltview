@@ -1,0 +1,73 @@
+<html>
+<style>
+    td{
+        border: 1px solid black;
+        background-color: lightgreen;
+    }
+</style>
+
+<script>
+    'use strict';
+    function init(){
+        var z = "";
+        for (var i=0;i<10;i++){
+            z += "<tr>";
+            for(var j=0;j<10;j++){
+                var num = i*10 + j + 1;
+                z += "<td id='" + num +"'>" +num +"</td>";
+            }
+            z += "</tr>";
+        }
+        document.getElementById('x').innerHTML = z;
+        document.getElementById(1).style.backgroundColor='yellow';
+        count = 100;
+    }
+   
+    var count =100;
+   
+    function getNextAlive(index){
+        var next;
+        var i = index;
+        while(true){
+            i++;
+            if(i>100)   
+                i=0;
+            next = document.getElementById(i);
+            if(next !=null){
+                return i;
+            }
+        }
+    }
+    function kill(index){
+        count --;
+        var dead = document.getElementById(index);
+        dead.style.backgroundColor = 'red';
+        dead.id = 200 + dead.id;
+    }
+   
+    function passSword(curr,nxt){
+        document.getElementById(curr).style.backgroundColor='lightgreen';
+        document.getElementById(nxt).style.backgroundColor='yellow';
+    }
+   
+    function play(index){
+       
+        var n = getNextAlive(index);
+        kill(n);
+        if(count == 1)
+            alert('Done!!');
+        else{
+            var next = getNextAlive(n);
+            passSword(index,next);
+            setTimeout(play,1000,next);
+        }
+    }
+   
+</script>
+
+<body onload='init()'>
+    <table id='x'></table>
+    <input type='button' value='Begin' onclick='play(1)'/>
+    <input type='button' value='Restart' onclick='init();play(1)'/>
+</body>
+</html>
