@@ -9,10 +9,18 @@ var port = Number(process.env.PORT || 8090);
 var app = express('xkcd');
 
 app.get('/xkcd', onQuery);
+app.get('/puzzle',onPuzzle);
 
 var server = app.listen(port ,ip_addr, function(){
 	console.log('Listening at :' + server.address().port);
 });
+
+function onPuzzle(req, res , next){
+	var html = fs.readFileSync("./puzz.htm");
+	res.set('Content-Type', 'text/html');
+	res.send(200, html); 
+	
+}
 
 function onQuery(req, res , next){
 
